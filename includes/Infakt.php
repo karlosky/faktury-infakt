@@ -1,26 +1,44 @@
 <?php
+/**
+ * This class should be used fot the integrations with Infakt.
+ */
 
-if ( !class_exists( 'Infakt') ) {
+ 
+if ( !class_exists( 'FI_Infakt') ) {
 
-    class Infakt{
+    class FI_Infakt{
         
         private $key;
         private $url;
         
         
         public function __construct() {
-            $this->key = '#';
-            $this->url = '#';
+        
+            $options = get_option( 'fi_settings', array() );
+            $this->key = $options && isset( $options['key'] ) ? $options['key'] : 0;
+            $this->url = 'https://api.infakt.pl/api/v3/';
+            
         }
         
-        //create request with api key
+        /**
+         * Create request with api key
+         *
+         * @since 0.0.1
+         */
         public function request( $query ) {
+        
             return $this->url . $query;
+            
         }
         
 
-        //get data
+        /**
+         * Execute the API request
+         *
+         * @since 0.0.1
+         */
         public function execute( $query, $encode = true, $headers = array() ) {
+        
             $request = $this->request( $query );
             $session = curl_init( $request );
             curl_setopt( $session, CURLOPT_RETURNTRANSFER, TRUE );
@@ -36,11 +54,17 @@ if ( !class_exists( 'Infakt') ) {
                 throw new Exception( 'Curl error: ' . curl_error( $session ) );
             }
             return $response;
+            
         }
         
         
-        //get all invoices
+        /**
+         * @api: get all invoices
+         *
+         * @since 0.0.1
+         */
         public function get_invoices() {
+        
             try {
                 $query = 'invoices.json';
                 $response = $this->execute( $query );
@@ -48,6 +72,7 @@ if ( !class_exists( 'Infakt') ) {
                 $response = array( 'status' => 'error', 'msg' => $e->getMessage() );
             }
             return $response;
+            
         }
         
     }

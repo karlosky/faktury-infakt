@@ -10,13 +10,15 @@
 define( 'FI_VERSION', '0.0.1' );
 
 include_once( plugin_dir_path( __FILE__ ) . 'includes/Infakt.php' );
+include_once( plugin_dir_path( __FILE__ ) . 'includes/Admin.php' );
 
 if ( !class_exists( 'FI_Plugin') ) {
     
     class FI_Plugin {
     
         public function __construct() {
-            $infakt = new Infakt;
+            $infakt = new FI_Infakt;
+            $admin = new FI_Admin;
         }
         
     }
