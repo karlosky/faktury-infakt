@@ -75,6 +75,18 @@ if ( !class_exists( 'FI_Infakt') ) {
             
         }
         
+        
+        /**
+         * @api: create new invoice
+         *
+         * @since 0.0.1
+         * @todo api request
+         */
+        public function add_invoice( $data ) {
+
+            
+        }
+        
     }
 
 }

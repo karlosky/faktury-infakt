@@ -57,9 +57,24 @@ if ( !class_exists( 'FI_Invoice_Box') ) {
          * @since 0.0.1
          */
         public function render_metabox( $post ) {
-        
-            // Add nonce for security and authentication.
-            wp_nonce_field( 'custom_nonce_action', 'custom_nonce' );
+            
+            global $woocommerce, $post;
+            $order = new WC_Order($post->ID);
+            ?>
+                <div id="fi-invoice-form">
+                    <?php wp_nonce_field( 'custom_nonce_action', 'infakt_invoice_nonce' ); ?>
+                    <input type="hidden" name="first_name" value="<?php echo $order->data['billing']['first_name']; ?>">
+                    <input type="hidden" name="last_name" value="<?php echo $order->data['billing']['last_name']; ?>">
+                    <input type="hidden" name="company" value="<?php echo $order->data['billing']['company']; ?>">
+                    <input type="hidden" name="address_1" value="<?php echo $order->data['billing']['address_1']; ?>">
+                    <input type="hidden" name="address_2" value="<?php echo $order->data['billing']['address_2']; ?>">
+                    <input type="hidden" name="postcode" value="<?php echo $order->data['billing']['postcode']; ?>">
+                    <input type="hidden" name="city" value="<?php echo $order->data['billing']['city']; ?>">
+                    <input type="hidden" name="state" value="<?php echo $order->data['billing']['state']; ?>">
+                    <input type="hidden" name="country" value="<?php echo $order->data['billing']['country']; ?>">
+                    <button name="fi-new-invoice" id="fi-new-invoice" class="button"><?php _e( 'Wystaw fakturę', 'fi' ); ?></button>
+                </div>
+            <?php
             
         }
      
@@ -72,7 +87,7 @@ if ( !class_exists( 'FI_Invoice_Box') ) {
         public function save_metabox( $post_id, $post ) {
         
             // Nonce - security
-            $nonce_name   = isset( $_POST['custom_nonce'] ) ? $_POST['custom_nonce'] : '';
+            $nonce_name   = isset( $_POST['infakt_invoice_nonce'] ) ? $_POST['infakt_invoice_nonce'] : '';
             $nonce_action = 'custom_nonce_action';
      
             if ( ! isset( $nonce_name ) ) {
