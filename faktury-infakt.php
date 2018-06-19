@@ -11,6 +11,7 @@ define( 'FI_VERSION', '0.0.1' );
 
 include_once( plugin_dir_path( __FILE__ ) . 'includes/Infakt.php' );
 include_once( plugin_dir_path( __FILE__ ) . 'includes/Admin.php' );
+include_once( plugin_dir_path( __FILE__ ) . 'includes/Invoice_Box.php' );
 
 if ( !class_exists( 'FI_Plugin') ) {
     
@@ -19,11 +20,13 @@ if ( !class_exists( 'FI_Plugin') ) {
         public function __construct() {
             $infakt = new FI_Infakt;
             $admin = new FI_Admin;
+            $invoice_box = new FI_Invoice_Box;
         }
         
     }
-
-    $fi = new FI_Plugin;
+    if ( is_admin() ) {
+        $fi = new FI_Plugin;
+    }
 }
 
 
