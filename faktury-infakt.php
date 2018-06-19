@@ -38,8 +38,8 @@ if ( !class_exists( 'FI_Plugin') ) {
         
         /*
         * Add JS script on the backend
-		*
-		* @since 0.0.1
+        *
+        * @since 0.0.1
         */
         public function add_scripts() {
         
@@ -50,8 +50,8 @@ if ( !class_exists( 'FI_Plugin') ) {
         
         /*
         * Add invoice to Infakt system
-		*
-		* @since 0.0.1
+        *
+        * @since 0.0.1
         */
         public function add_invoice() {
         

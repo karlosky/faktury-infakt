@@ -7,13 +7,13 @@ jQuery(document).ready(function() {
         var inputs = $('#fi-invoice-form :input').serialize();
     
         var data = {
-			'action': 'fi_add_invoice',
-			'fi-invoice': inputs
-		};
+            'action': 'fi_add_invoice',
+            'fi-invoice': inputs
+        };
         
         jQuery.post(ajaxurl, data, function(response) {
             console.log(response);
-		});
+        });
 
     });
     
