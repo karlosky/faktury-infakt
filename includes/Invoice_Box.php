@@ -97,8 +97,8 @@ if ( !class_exists( 'FI_Invoice_Box') ) {
                             <label for="paid"><?php _e( 'Zapłacona kwota', 'fi' ); ?></label> <input type="text" name="paid" value="">
                         </p>
                         <p class="form-field">
-                            <label><input type="text" name="invoice_type" value="faktura"><?php _e( 'Faktura', 'fi' ); ?></label> 
-                            <label><input type="text" name="invoice_type" value="proforma"><?php _e( 'Pro-forma', 'fi' ); ?></label> 
+                            <label><input type="radio" name="invoice_type" value="faktura"><?php _e( 'Faktura', 'fi' ); ?></label> 
+                            <label><input type="radio" name="invoice_type" value="proforma"><?php _e( 'Pro-forma', 'fi' ); ?></label> 
                         </p>
                         <p class="form-field">
                             <button name="fi-new-invoice" id="fi-new-invoice" class="button"><?php _e( 'Wystaw dokument', 'fi' ); ?></button>
