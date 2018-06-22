@@ -60,6 +60,13 @@ if ( !class_exists( 'FI_Invoice_Box') ) {
             
             global $woocommerce, $post;
             $order = new WC_Order($post->ID);
+            $items = $order->get_items();
+            $products = array();
+            if ( $items ) { 
+                foreach ( $items as $item ) {
+                    $products[] = $item->data['name'];
+                }
+            }
             ?>
                 <div id="fi-invoice-form">
                     <a href="#TB_inline?width=600&height=800&inlineId=fi-modal" class="button thickbox"><?php _e( 'Wystaw fakturę', 'fi' ); ?></a>
@@ -95,6 +102,14 @@ if ( !class_exists( 'FI_Invoice_Box') ) {
                         </p>
                         <p class="form-field">
                             <label for="paid"><?php _e( 'Zapłacona kwota', 'fi' ); ?></label> <input type="text" name="paid" value="">
+                        </p>
+                        <p>
+                            <strong><?php _e( 'Zakupione produkty', 'fi' ); ?></strong>
+                            <ul>
+                                <?php foreach ( $products as $product ) : ?>
+                                    <li><?php echo $product; ?></li>
+                                <?php endforeach; ?>
+                            </ul>
                         </p>
                         <p class="form-field">
                             <label><input type="radio" name="invoice_type" value="faktura"><?php _e( 'Faktura', 'fi' ); ?></label> 

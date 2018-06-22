@@ -82,7 +82,19 @@ if ( !class_exists( 'FI_Infakt') ) {
          * @since 0.0.1
          * @todo api request
          */
-        public function add_invoice( $data ) {
+        public function add_invoice( $data, $type = 'faktura' ) {
+
+            
+        }
+        
+        
+        /**
+         * @api: get document
+         *
+         * @since 0.0.1
+         * @todo api request
+         */
+        public function get_invoice( $id ) {
 
             
         }
